@@ -7,6 +7,9 @@
 #include <stdio.h>
 #include <stddef.h>
 
+/*handle the console*/
+void _prompt(void);
+
 /* handles string prototypes*/
 int _putchar(char c);
 void _puts(char *str);
