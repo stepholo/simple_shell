@@ -26,7 +26,7 @@ char *_strcpy(char *dest, const char *src)
  *
  * Return: string duplicate or NULL
  */
-char _strdup(char *str)
+char *_strdup(char *str)
 {
 	int len, i;
 	char *dup;
@@ -53,7 +53,7 @@ char _strdup(char *str)
  *
  * Return: concatinated string
  */
-char _strcat(char *dest, const char *src)
+char *_strcat(char *dest, const char *src)
 {
 	int i, j;
 

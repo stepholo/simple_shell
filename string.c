@@ -35,7 +35,7 @@ int _strlen(char *str)
 {
 	int len = 0;
 
-	if (*str == NULL)
+	if (*str == '\0')
 		return (0);
 
 	while (str[len] != '\0')
@@ -53,10 +53,10 @@ int _strlen(char *str)
  */
 int _strcmp(char *s1, char *s2)
 {
-	while ((*s1 != NULL && *s2 != NULL) && (*s1 == *s2))
+	while ((*s1 != '\0' && *s2 != '\0') && (*s1 == *s2))
 	{
-		*s1++;
-		*s2++;
+		s1++;
+		s2++;
 	}
 	if (*s1 == *s2)
 		return (0);
@@ -73,7 +73,7 @@ int _strcmp(char *s1, char *s2)
 void rev_str(char *str)
 {
 	int len, i;
-	char *first, *last, *tmp;
+	char *first, *last, tmp;
 
 	len = _strlen(str);
 	first = str;
