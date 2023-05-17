@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * -strcpy - implementation of strcpy()
- *  @dest: string destination
- *  @src: string source
- *
- *  Return: string copy
- */
+* _strcpy - implementation of strcpy()
+*  @dest: string destination
+*  @src: string source
+*
+*  Return: string copy
+*/
 char *_strcpy(char *dest, const char *src)
 {
 	int i = 0;
@@ -21,11 +21,11 @@ char *_strcpy(char *dest, const char *src)
 }
 
 /**
- * _strdup - functio  that duplicates a string
- * @str: string
- *
- * Return: string duplicate or NULL
- */
+* _strdup - functio  that duplicates a string
+* @str: string
+*
+* Return: string duplicate or NULL
+*/
 char *_strdup(char *str)
 {
 	int len, i;
@@ -47,12 +47,12 @@ char *_strdup(char *str)
 }
 
 /**
- * _stcat - function thatconcatinates a string
- * @dest: string destination
- * @src: string source
- *
- * Return: concatinated string
- */
+* _strcat - function thatconcatinates a string
+* @dest: string destination
+* @src: string source
+*
+* Return: concatinated string
+*/
 char *_strcat(char *dest, const char *src)
 {
 	int i, j;
@@ -71,13 +71,13 @@ char *_strcat(char *dest, const char *src)
 }
 
 /**
- * _strchr - locates a char in a string
- * @str: string
- * @ch: character to be searched
- *
- * Return: pointer to the first occurence of c
- * or NULL 
- */
+* _strchr - locates a char in a string
+* @str: string
+* @ch: character to be searched
+*
+* Return: pointer to the first occurence of c
+* or NULL
+*/
 char *_strchr(const char *str, int ch)
 {
 	while (*str != '\0')
