@@ -1,23 +1,25 @@
 #include "main.h"
+
 /**
- * _putchar - implementation of putchar
- * @c: char to be read
- * Return: 1(success)
- * */
+* _putchar - implementation of putchar
+* @c: char to be read
+* Return: 1(success)
+*/
 int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
-/*
- * _puts - imlementation of puts char
- * @str: string to be read
- *
- * Return: string
- */
+
+/**
+* _puts - imlementation of puts char
+* @str: string to be read
+*
+* Return: string
+*/
 void _puts(char *str)
 {
 	int i = 0;
-	
+
 	while (str[i] != '\0')
 	{
 		_putchar(str[i]);
@@ -25,12 +27,14 @@ void _puts(char *str)
 	}
 	_putchar('\0');
 }
+
 /**
- * _strlen - function that gets the length of a string
- * @str: string to be read
- *
- * Return: length
- */
+* _strlen - function that gets the length of a string
+* @str: string to be read
+*
+* Return: length
+*/
+
 int _strlen(char *str)
 {
 	int len = 0;
@@ -44,13 +48,14 @@ int _strlen(char *str)
 	}
 	return (len);
 }
+
 /**
- * _strcmp - function that compares two strings
- * @s1: first string
- * @s2: second sring
- *
- * Return: string difference else 0
- */
+* _strcmp - function that compares two strings
+* @s1: first string
+* @s2: second sring
+*
+* Return: string difference else 0
+*/
 int _strcmp(char *s1, char *s2)
 {
 	while ((*s1 != '\0' && *s2 != '\0') && (*s1 == *s2))
@@ -65,11 +70,12 @@ int _strcmp(char *s1, char *s2)
 	return (0);
 }
 /**
- * rev_str - function that reverses a string
- * @str: string to be reversed
- *
- * Return: reversed string
- */
+* rev_str - function that reverses a string
+* @str: string to be reversed
+*
+* Return: reversed string
+*/
+
 void rev_str(char *str)
 {
 	int len, i;
@@ -79,7 +85,7 @@ void rev_str(char *str)
 	first = str;
 	last = str;
 
-	for (i = 0; i < len -1; i++)
+	for (i = 0; i < len - 1; i++)
 	{
 		tmp = *first;
 		*first = *last;
