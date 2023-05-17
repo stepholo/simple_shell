@@ -53,6 +53,7 @@ char *_strcpy(char *dest, const char *src);
 char *_strdup(char *str);
 char *_strcat(char *dest, const char *src);
 char *_strchr(const char *str, int ch);
+int _atoi(const char *str);
 
 /* Handle memory */
 void cleanup(char **args, char *command);
