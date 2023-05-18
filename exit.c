@@ -36,44 +36,48 @@ void exit_error_message(char *av, int line_number, char *arg)
 }
 
 /**
-* exit_builtin - exits the shell
-* @args: array of arguments passed to the exit command
-* Return: always 0, to signall the shell to exit
+* validate_exit_argument - Validates exit command arguments
+* @arg: Exit command argument
+* Return: true for valid argument, false othersiwe
 */
-int exit_builtin(char **args)
+bool validate_exit_argument(const char *arg)
 {
-	int i = 0, status = 0;
+	char *endptr;
+	long int exit_code;
 
-	args[0] = "./hsh";
-
-	if (args[1] != NULL)
-	{
-		if (args[1][0] == '-')
-		{
-			exit_error_message(args[0], 1, args[1]);
-			exit(2);
-		}
-
-		while (args[1][i] != '\0')
-		{
-			if (arg[1][i] < '0' || args[1][i] > '9')
-			{
-				exit_error_message(args[0], 1, args[1]);
-				exit(2);
-			}
-
-			status = status * 10 + (args[1][i] - '0');
-			i++;
-		}
-	}
-
-	if (status < 0)
-	{
-		exit_error_message(args[0], 1, args[1]);
-		exit(2);
-	}
-
-	exit(status);
-	return (0);
+	exit_code = strtol(arg, &endptr, 10);
+	return (*endptr == '\0' && exit_code >= 0);
 }
+
+/**
+* handle_exit - Handles the exit command return status
+* @args: command argument
+* @command: User input
+* Return: exits with 2 for valid argument and 0 for exit
+*/
+void handle_exit(char **args, char *command)
+{
+	int exit_status = 0;
+
+	if (args[1] == NULL)
+	{
+		cleanup(args, command);
+		exit(exit_status);
+	}
+
+	if (!validate_exit_arguments(args[1]))
+	{
+		exit_status = 2;
+		exit_error_message("./hsh", 1, args[1]);
+		cleanup(args, command);
+		exit(exit_status);
+	}
+
+	exit_status = _atoi(args[1]);
+	if (exit_status > 255)
+		exit_status %= 256;
+	cleanup(args, command);
+	exit(exit_status);
+}
+
 
