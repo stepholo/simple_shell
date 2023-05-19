@@ -54,6 +54,9 @@ char *_strdup(char *str);
 char *_strcat(char *dest, const char *src);
 char *_strchr(const char *str, int ch);
 int _atoi(const char *str);
+unsigned int _strspn(char *str, const char *accept);
+size_t _strcspn(char *str, const char *reject);
+char *_strtok(char *str, const char *del, char **pos);
 
 /* Handle memory */
 void cleanup(char **args, char *command);
