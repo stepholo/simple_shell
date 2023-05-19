@@ -45,7 +45,7 @@ char *build_full_path(char *start, char *command)
 char *find_command_path(char *command)
 {
 	char *path_env, *path, *start, *end;
-	char *resuslt = NULL;
+	char *result = NULL;
 
 	path_env = _getenv("PATH", environ);
 	if (!path_env)
