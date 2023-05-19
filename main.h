@@ -33,21 +33,28 @@ char *find_command_path(char *command);
 char *build_full_path(char *start, char *command);
 
 /* Shell inbuit command */
-int inbuilt_command(char *command, char **args, char **envp, char *av);
+int inbuilt_command(char *command, char **args, char **envp, char **av);
 int exit_builtin(char **args);
 bool validate_exit_argument(const char *arg);
 void handle_exit(char **args, char *command);
 int env_builtin(char **args);
+int cd(char **args);
+
+/* User defined getline function */
+void bring_line(char **lineptr, size_t *n, char *buffer, size_t j);
+ssize_t get_line(char **lineptr, size_t *n, FILE *stream);
 
 /* Error messages */
 void error_message(char *avO, int line_number, char *argO);
 void exit_error_message(char *av, int line_number, char *arg);
+void cd_error_message(char *av, int line_number, char *dir);
 
 /* handles string prototypes*/
 int _putchar(char c);
 void _puts(char *str);
 int _strlen(char *str);
 int _strcmp(char *s1, char *s2);
+int _strncmp(const char *s1, const char *s2, size_t n);
 void rev_str(char *str);
 char *_strcpy(char *dest, const char *src);
 char *_strdup(char *str);
@@ -59,6 +66,7 @@ size_t _strcspn(char *str, const char *reject);
 char *_strtok(char *str, const char *del, char **pos);
 
 /* Handle memory */
+void *_realloc(void *ptr, unsigned int o_size, unsigned int n_size);
 void cleanup(char **args, char *command);
 
 /* User defined function */
