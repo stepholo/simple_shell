@@ -30,11 +30,11 @@ char **parse_arguments(char *command)
 		return (NULL);
 	}
 
-	token = -strtok(command, delim, &command);
+	token = _strtok(command, delim, &command);
 	while (token != NULL && i < MAX_ARGUMENTS - 1)
 	{
 		args[i++] = token;
-		token = _strkok(NULL, delin, &command);
+		token = _strtok(NULL, delin, &command);
 	}
 
 	args[i] = NULL;
