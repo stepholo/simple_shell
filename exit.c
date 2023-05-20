@@ -65,7 +65,7 @@ void handle_exit(char **args, char *command)
 		exit(exit_status);
 	}
 
-	if (!validate_exit_arguments(args[1]))
+	if (!validate_exit_argument(args[1]))
 	{
 		exit_status = 2;
 		exit_error_message("./hsh", 1, args[1]);

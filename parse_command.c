@@ -1,4 +1,4 @@
-#inlcude "main.h"
+#include "main.h"
 
 /**
 * parse_arguments - Function to parse command line arguments
@@ -35,6 +35,7 @@ char **parse_arguments(char *command)
 	{
 		args[i++] = token;
 		token = _strtok(NULL, delin, &command);
+		token = _strtok(NULL, delim, &command);
 	}
 
 	args[i] = NULL;
