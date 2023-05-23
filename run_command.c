@@ -5,9 +5,12 @@
 * @path: path of the command
 * @args: Command arguments
 * @envp: environment
+* @av: Argument vector
+* @line_number: Command number
 * Return: status
 */
-int execute_command(char *path, char **args, char **envp)
+int execute_command(char *path, char **args, char **envp,
+		   char **av, int line_number)
 {
 	pid_t pid;
 	int status;
@@ -23,18 +26,37 @@ int execute_command(char *path, char **args, char **envp)
 		execve(path, args, envp);
 
 		if (_strcmp(args[0], "cd") == 0)
-			cd(args);
+		{
+			status = cd(args, line_number);
+			exit(status);
+		}
 
 		else
-			perror("execve() failed");
-
-		exit(1);
+		{
+			error_message(av[0], line_number, args[0]);
+			exit(1);
+		}
 	}
 	else
 	{
 		waitpid(pid, &status, 0);
 		return (status);
 	}
+}
+
+/**
+* is_directory - function to check whether a user input is a directory
+* @dir: Pointer to the directory name
+* Return: true if name is of a directory otherwise false
+*/
+bool is_directory(const char *dir)
+{
+	struct stat st;
+
+	if (stat(dir, &st) == 0)
+		return (S_ISDIR(st.st_mode));
+
+	return (false);
 }
 
 /**
@@ -52,12 +74,24 @@ int run_command(char *command, char **args, char **envp,
 	char *path = NULL;
 	int status;
 
-	/*
-	 *if (inbuilt_command(command, args, envp, av) == 0)
-		return (0);
-	*/
+	if (_strcmp(command, "setenv") == 0)
+	{
+		status = setenv_builtin(args, envp);
+		return (status);
+	}
 
-	if (command != NULL && access(command, X_OK) == 0)
+	else if (_strcmp(command, "unsetenv") == 0)
+	{
+		status = unsetenv_builtin(args, envp);
+		return (status);
+	}
+	else if (_strcmp(command, "cd") == 0)
+	{
+		status = cd(args, line_number);
+		return (status);
+	}
+
+	if (command != NULL && access(command, X_OK) == 0 && !is_directory(command))
 		path = _strdup(command);
 	else
 		path = find_command_path(command);
@@ -68,7 +102,7 @@ int run_command(char *command, char **args, char **envp,
 		return (127);
 	}
 
-	status = execute_command(path, args, envp);
+	status = execute_command(path, args, envp, av, line_number);
 	if (path != command)
 		free(path);
 
