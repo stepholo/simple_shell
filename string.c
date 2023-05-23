@@ -35,7 +35,7 @@ void _puts(char *str)
 * Return: length
 */
 
-int _strlen(char *str)
+int _strlen(const char *str)
 {
 	int len = 0;
 
@@ -56,7 +56,7 @@ int _strlen(char *str)
 *
 * Return: string difference else 0
 */
-int _strcmp(char *s1, char *s2)
+int _strcmp(const char *s1, const char *s2)
 {
 	while ((*s1 != '\0' && *s2 != '\0') && (*s1 == *s2))
 	{
