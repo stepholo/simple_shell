@@ -24,7 +24,7 @@ int env_builtin(char **envp)
 * @envp: Pointer to the env variable passed to the program
 * Return: A pointer to the value of the env variable otherwise NULL
 */
-char *_getenv(char *name, char **envp)
+char *_getenv(const char *name, char **envp)
 {
 	int i;
 	size_t namelen = _strlen(name);
@@ -40,3 +40,49 @@ char *_getenv(char *name, char **envp)
 	return (NULL);
 }
 
+/**
+* setenv_builtin - Initialize a new environment variable or
+* modify an existing one
+* @args: Command arguments
+* @envp: Environment variable
+* Return: 0 on success, -1 on error
+*/
+int setenv_builtin(char **args, char **envp)
+{
+	(void)envp;
+
+	if (args[1] == NULL || args[2] == NULL)
+	{
+		_puts("Usage: setenv VARIABLE VALUE");
+		_puts("\n");
+		return (-1);
+	}
+
+	if (_setenv(args[1], args[2], 1) == -1)
+	{
+		perror("setenv");
+		return (-1);
+	}
+
+	return (0);
+}
+
+/**
+* unsetenv_builtin - Remove an environment variable
+* @args: Command arguments
+* @envp: Environment variable
+* Return: 0 on success, -1 on error
+*/
+int unsetenv_builtin(char **args, char **envp)
+{
+	(void)envp;
+
+	if (args[1] == NULL)
+	{
+		_puts("Usage: unsetenv VARIABLE");
+		_puts("\n");
+		return (-1);
+	}
+
+	return (0);
+}

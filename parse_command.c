@@ -34,7 +34,6 @@ char **parse_arguments(char *command)
 	while (token != NULL && i < MAX_ARGUMENTS - 1)
 	{
 		args[i++] = token;
-		token = _strtok(NULL, delin, &command);
 		token = _strtok(NULL, delim, &command);
 	}
 
