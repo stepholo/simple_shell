@@ -70,7 +70,6 @@ char *_strtok(char *str, const char *del, char **pos);
 /* Handle memory */
 void *_realloc(void *ptr, unsigned int o_size, unsigned int n_size);
 void cleanup(char **args, char *command);
-void *_relloc(void *str, unsigned int old, unsigned int new);
 char *_memset(char *str, char x, unsigned int val);
 
 /* User defined function */
