@@ -17,13 +17,6 @@ char *build_full_path(char *start, char *command)
 	if (!full_path)
 		return (NULL);
 
-	if (snprintf(full_path, full_path_size, "%s/%s", start, command) >=
-			full_path_size)
-	{
-		free(full_path);
-		return (NULL);
-	}
-
 	_strcpy(full_path, start);
 	_strcat(full_path, "/");
 	_strcat(full_path, command);
