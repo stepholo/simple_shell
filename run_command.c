@@ -14,6 +14,8 @@ int execute_command(char *path, char **args, char **envp,
 {
 	pid_t pid;
 	int status;
+	int exit_status = 0;
+	(void)av;
 
 	pid = fork();
 	if (pid < 0)
@@ -23,25 +25,29 @@ int execute_command(char *path, char **args, char **envp,
 	}
 	else if (pid == 0)
 	{
-		execve(path, args, envp);
+		if (path != NULL)
+		{
+			execve(path, args, envp);
+		}
 
 		if (_strcmp(args[0], "cd") == 0)
 		{
 			status = cd(args, line_number);
+			exit_status = status;
 			exit(status);
 		}
 
-		else
-		{
-			error_message(av[0], line_number, args[0]);
-			exit(1);
-		}
+		exit_status = 2;
+
 	}
 	else
 	{
 		waitpid(pid, &status, 0);
-		return (status);
+
+		if (WIFEXITED(status))
+			exit_status = WEXITSTATUS(status);
 	}
+	return (exit_status);
 }
 
 /**
@@ -99,7 +105,8 @@ int run_command(char *command, char **args, char **envp,
 	if (path == NULL)
 	{
 		error_message(av[0], line_number, args[0]);
-		return (127);
+		cleanup(args, command);
+		exit(127);
 	}
 
 	status = execute_command(path, args, envp, av, line_number);
