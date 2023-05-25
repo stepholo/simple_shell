@@ -53,8 +53,6 @@ int setenv_builtin(char **args, char **envp)
 
 	if (args[1] == NULL || args[2] == NULL)
 	{
-		_puts("Usage: setenv VARIABLE VALUE");
-		_puts("\n");
 		return (-1);
 	}
 
@@ -79,8 +77,6 @@ int unsetenv_builtin(char **args, char **envp)
 
 	if (args[1] == NULL)
 	{
-		_puts("Usage: unsetenv VARIABLE");
-		_puts("\n");
 		return (-1);
 	}
 
