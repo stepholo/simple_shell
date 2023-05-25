@@ -24,7 +24,7 @@ extern char *command;
 extern char **args;
 extern bool should_exit;
 
-/* Shell Implementation */
+/* Shell Implementation main functions*/
 int run_command(char *command, char **args, char **envp,
 		char **av, int line_number);
 int execute_command(char *path, char **args, char **envp,
