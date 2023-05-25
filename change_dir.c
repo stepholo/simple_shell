@@ -11,11 +11,7 @@ void cd_error_message(int line_number, char *dir)
 	char line_number_str[12];
 
 	_sprintf(line_number_str, line_number);
-	_puts("./hsh: ");
-	_puts(line_number_str);
-	_puts(": cd: can't cd to ");
-	_puts(dir);
-	_puts("\n");
+	fprintf(stderr, "./hsh: %s: cd: can't cd to %s\n", line_number_str, dir);
 }
 
 /**
