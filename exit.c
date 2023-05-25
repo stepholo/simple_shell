@@ -79,5 +79,3 @@ void handle_exit(char **args, char *command)
 	cleanup(args, command);
 	exit(exit_status);
 }
-
-
